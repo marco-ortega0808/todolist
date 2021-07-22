@@ -5,11 +5,15 @@
     if (isset($_POST['agregaTarea'])) {
         if ($_POST['tarea'] ) {
             $tarea = $_POST['tarea'];
-            $conenctaBD->query("INSERT INTO tareas (info_tarea) VALUES ('$tarea')");
+            $conenctaBD->query("INSERT INTO tareas (info_tarea, estado) VALUES ('$tarea', 'Nueva')");
+            header('location:index.php');
+        }
+        else {
+            
             header('location:index.php');
         }
     }
     else {
-        print(":v000");
+        print("Error");
     }
 ?>
