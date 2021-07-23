@@ -71,6 +71,10 @@
                                     <?php
                                         }
                                     ?>
+                                    
+                                    <a href="editar_tarea.php?id_tarea=<?php print $resiveTarea['id_tarea'];?>&info_tarea=<?php print $resiveTarea['info_tarea'];?>" class="btn btn-info">
+                                        <span class="fas fa-pencil-alt"></span>
+                                    </a>
 
                                     <a href="eliminar-tarea.php?id_tarea=<?php print $resiveTarea['id_tarea'];?>" class="btn btn-danger">
                                         <span class="fa fa-trash-alt"></span>
