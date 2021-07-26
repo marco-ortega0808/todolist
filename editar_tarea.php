@@ -22,13 +22,19 @@
                             require_once 'conn.php';
                             $idTareas = $_GET['id_tarea'];
                             $infoTarea = $_GET['info_tarea'];
+                            
                         ?>
                         <input type="text" name="tareaEditada" value="<?php print $infoTarea; ?>" class="form-control" >
                         <input style="display: none;" type="text" name="id" value="<?php print $idTareas; ?>">
+                        <input style="display: none;" type="text" name="tarea" value="<?php print $infoTarea; ?>">
                         <button type="submit" class="btn btn-primary mt-3" name="ediTarea">Editar tarae</button>
                        
                     </form> 
                     <?php require_once 'conn.php';
+
+                        use PHPMailer\PHPMailer\PHPMailer;
+                        use PHPMailer\PHPMailer\Exception;
+                        use PHPMailer\PHPMailer\SMTP;
 
                         if (isset($_POST['ediTarea'])) {
                             
@@ -36,12 +42,46 @@
                                
                                 $editarTarea = $_POST['tareaEditada'];
                                 $id = $_POST['id'];
-                                
+                                $anteriorTarea = $_POST['tarea'];
                                 $conenctaBD->query("UPDATE tareas SET info_tarea = '$editarTarea' WHERE id_tarea = $id") or die(mysqli_errno($conenctaBD));
                                 header('location:index.php');
+
+                                require ('PHPMailer/src/Exception.php');
+                                require ('PHPMailer/src/PHPMailer.php');
+                                require ('PHPMailer/src/SMTP.php');
+                        
+                                $mail = new PHPMailer(true);
+                        
+                                try {
+                                    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                                    $mail->isSMTP();                  
+                                    $mail->Host       = 'smtp.gmail.com';
+                                    $mail->SMTPAuth   = true;
+                                    $mail->Username   = 'marcoantoniot089@gmail.com';
+                                    $mail->Password   = 'marco9908P';
+                                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                                    $mail->Port       = 587;
+                        
+                                    $mail->setFrom('marcoantoniot089@gmail.com', 'Marco Antonio Ortega Trejo');
+                                    $mail->addAddress('poyoespro@gmail.com');
+                        
+                                    $mail->isHTML(true);
+                                    $mail->Subject = 'Se edito una tarea';
+                                    $mail->Body = $id." ".$anteriorTarea." por <br> ".$id." ".$editarTarea;
+                                    $mail->Body = "<table><thead><tr styles='border: 1px solid black;'><th>ID</th><th>TAREA</th><th>MENSAJE</th></tr></thead><tr styles='border: 1px solid black;'><td> ".$id." </td> ".$anteriorTarea.' </td><td> VIEJO</td></tr><tr><td> '.$id.' </td><td>' .$editarTarea.' </td><td> NUEVO</td></tr></table>';
+                        
+                                    $mail->send();
+                                    print "correo enviado";
+                        
+                                }
+                                catch(Exception $e){
+                                    print "error {$mail->ErrorInfo}";
+                                }
+
                             }
                         } 
                     ?> 
+                    
                 </div>
             </div>
         </div>

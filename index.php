@@ -49,15 +49,15 @@
 
                                 <td>
                                     <?php if($resiveTarea['estado'] == "Nueva" ){?>
-                                        <a href="actualizar-tarea.php?id_tarea=<?php print $resiveTarea['id_tarea'];?>&estado=<?php print $resiveTarea['estado'];?>" class="btn btn-warning">
+                                        <a href="actualizar-tarea.php?id_tarea=<?php print $resiveTarea['id_tarea'];?>&info_tarea=<?php print $resiveTarea['info_tarea'];?>&estado=<?php print $resiveTarea['estado'];?>" class="btn btn-warning">
                                             <span class="fas fa-stopwatch"></span>
                                         </a>
                                     <?php
                                         }
                                     ?>
 
-                                    <?php if($resiveTarea['estado'] == "Realizando"){ ?>
-                                        <a href="tarea-finalizada.php?id_tarea=<?php print $resiveTarea['id_tarea'];?>" class="btn btn-success">
+                                    <?php if($resiveTarea['estado'] == "En progreso"){ ?>
+                                        <a href="tarea-finalizada.php?id_tarea=<?php print $resiveTarea['id_tarea'];?>&info_tarea=<?php print $resiveTarea['info_tarea'];?>&estado=<?php print $resiveTarea['estado'];?>" class="btn btn-success">
                                             <span class="fas fa-check"></span>
                                         </a>
                                     <?php
@@ -72,7 +72,7 @@
                                         }
                                     ?>
 
-                                    <?php if($resiveTarea['estado'] == "Nueva" ||$resiveTarea['estado'] == "Realizando") {?>
+                                    <?php if($resiveTarea['estado'] == "Nueva" ||$resiveTarea['estado'] == "En progreso") {?>
                                     <a href="editar_tarea.php?id_tarea=<?php print $resiveTarea['id_tarea'];?>&info_tarea=<?php print $resiveTarea['info_tarea'];?>" class="btn btn-info">
                                         <span class="fas fa-pencil-alt"></span>
                                     </a>
@@ -81,7 +81,7 @@
                                     }
                                     ?>
 
-                                    <a href="eliminar-tarea.php?id_tarea=<?php print $resiveTarea['id_tarea'];?>" class="btn btn-danger">
+                                    <a href="eliminar-tarea.php?id_tarea=<?php print $resiveTarea['id_tarea'];?>&info_tarea=<?php print $resiveTarea['info_tarea'];?>&estado=<?php print $resiveTarea['estado'];?>" class="btn btn-danger">
                                         <span class="fa fa-trash-alt"></span>
                                     </a>
                                     
