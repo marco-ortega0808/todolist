@@ -64,11 +64,13 @@
                         
                                     $mail->setFrom('marcoantoniot089@gmail.com', 'Marco Antonio Ortega Trejo');
                                     $mail->addAddress('poyoespro@gmail.com');
+                                    //$mail->addCC('luis@tygonsoft.com');
+                                    $mail->addReplyTo('marcoantoniot089@gmail.com');
                         
                                     $mail->isHTML(true);
-                                    $mail->Subject = 'Se edito una tarea';
+                                    $mail->Subject = 'Has editado tu tarea';
                                     $mail->Body = $id." ".$anteriorTarea." por <br> ".$id." ".$editarTarea;
-                                    $mail->Body = "<table><thead><tr styles='border: 1px solid black;'><th>ID</th><th>TAREA</th><th>MENSAJE</th></tr></thead><tr styles='border: 1px solid black;'><td> ".$id." </td> ".$anteriorTarea.' </td><td> VIEJO</td></tr><tr><td> '.$id.' </td><td>' .$editarTarea.' </td><td> NUEVO</td></tr></table>';
+                                    $mail->Body = "<table><thead><tr style='border: 1px solid black;'><th>ID</th><th>TAREA</th><th>MENSAJE</th></tr></thead><tr style='border: 1px solid black;'><td> ".$id." </td> ".$anteriorTarea.' </td><td> VIEJO</td></tr><tr><td> '.$id.' </td><td>' .$editarTarea.' </td><td> NUEVO</td></tr></table>';
                         
                                     $mail->send();
                                     print "correo enviado";

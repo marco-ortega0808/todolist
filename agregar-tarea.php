@@ -29,10 +29,12 @@
             
                 $mail->setFrom('marcoantoniot089@gmail.com', 'Marco Antonio Ortega Trejo');
                 $mail->addAddress('poyoespro@gmail.com');
+                //$mail->addCC('luis@tygonsoft.com');
+                $mail->addReplyTo('marcoantoniot089@gmail.com');
             
                 $mail->isHTML(true);
                 $mail->Subject = 'Alta de nueva tarea';
-                $mail->Body = "<table><thead><tr styles='border: 1px solid black;'><th>TAREA</th><th>STATUS</th></tr></thead><tr styles='border: 1px solid black;'><td>".$tarea.'</td> <td>Nueva</td></tr></table>';
+                $mail->Body = "<table><thead><tr style='border: 1px solid black;'><th>TAREA</th><th>STATUS</th></tr></thead><tr style='border: 1px solid black;'><td>".$tarea.'</td> <td>Nueva</td></tr></table>';
             
                 $mail->send();
                 
