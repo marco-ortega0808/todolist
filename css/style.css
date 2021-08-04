@@ -1,0 +1,16 @@
+.navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.781) !important;
+}
+
+.img-fluid {
+    height: 90px;
+    padding-left: 30px;
+}
+
+.bg-light {
+    background-color: #198754 !important;
+}
+
+.nav-link:hover{
+    background-color: #198743 !important;
+}

@@ -14,8 +14,7 @@
 
     
     } else {
-        print "Correo o contraseña invalida";
-    
+        header('location:iniciar-sesion.php');
     }
      
 ?>

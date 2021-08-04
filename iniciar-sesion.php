@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todolist Web App</title>
-    <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -26,7 +25,7 @@
         <div class="collapse navbar-collapse col-6" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active text-center" aria-current="page" href="inicio-sesion.php">Iniciar sesión</a>
+              <a class="nav-link active text-center" aria-current="page" href="registro.php">Registrate</a>
             </li>
             <!--<li class="nav-item">
               <a class="nav-link" href="#">Features</a>
@@ -36,21 +35,21 @@
       </div>
     </nav>
 <header>
-
+<section>
     <div class="row">
         <div class="container">
             <div class="col-md-12">
                 
                 <div class="text-center">    
-                    <h1 class="text-success mt-3 mb-3 text-decoration">
-                        My todo WebApp
-                    </h1>
+                    <h1 class="text-success mt-3 mb-3  text-decoration">
+                        My todo WebApp</h1>
 
-                    <form action="agrega-registro.php" method="POST">
-                        <input type="text" name="nombre" class="form-control" placeholder="Nombre">
-                        <input type="text" name="correo" class="form-control" placeholder="Correo">
-                        <input type="password"  name="contrasena" class="form-control encript" placeholder="Contraseña">
-                        <button type="submit" class="btn btn-primary mt-3" name="agregaRegistro">Agrgar registro</button>
+                    <form action="validar-sesion.php" method="POST">
+                            <input type="email" class="form-control" name="email" placeholder="Correo">                                
+                            <input type="password"  name="contrasena" class="form-control" placeholder="Contraseña">
+                            <p class="text-danger">Correo o contraseña invalido</p>
+                        <button type="submit" class="btn btn-primary  mb-3" name="iniciar-sesion">Iniciar Sesión</button><br>
+                        <a href="recupera-contrasena.php">¿Olvidaste tu contraseña?</a>
                     </form>
                     
                 </div>
@@ -60,6 +59,6 @@
         </div>
     
     </div>
-
+</section>
 </body>
 </html>

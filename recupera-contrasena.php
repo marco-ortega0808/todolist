@@ -17,21 +17,7 @@
       <div class="container-fluid">
         <div class="col-3 ">
           <img src="img/logo.png" class="img-fluid" alt="">
-        </div>
-        <div class="col-2">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-        <div class="collapse navbar-collapse col-6" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active text-center" aria-current="page" href="inicio-sesion.php">Iniciar sesión</a>
-            </li>
-            <!--<li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>-->
-          </ul>
+        </div>        
         </div>
       </div>
     </nav>
@@ -46,11 +32,9 @@
                         My todo WebApp
                     </h1>
 
-                    <form action="agrega-registro.php" method="POST">
-                        <input type="text" name="nombre" class="form-control" placeholder="Nombre">
+                    <form action="valida-correo.php" method="POST">
                         <input type="text" name="correo" class="form-control" placeholder="Correo">
-                        <input type="password"  name="contrasena" class="form-control encript" placeholder="Contraseña">
-                        <button type="submit" class="btn btn-primary mt-3" name="agregaRegistro">Agrgar registro</button>
+                        <button type="submit" class="btn btn-primary mt-3" name="agregaRegistro">Obtener contraseña nueva</button>
                     </form>
                     
                 </div>

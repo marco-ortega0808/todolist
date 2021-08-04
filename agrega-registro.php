@@ -30,7 +30,7 @@
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port       = 587;
             
-                $mail->setFrom('marcoantoniot089@gmail.com', 'Marco Antonio Ortega Trejo');
+                $mail->setFrom('marcoantoniot089@gmail.com', 'WebApp');
                 $mail->addAddress($correo);
                 //$mail->addCC('luis@tygonsoft.com');
                 $mail->addReplyTo('marcoantoniot089@gmail.com');

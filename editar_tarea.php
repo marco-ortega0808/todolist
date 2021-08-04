@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    $usuario = $_SESSION['usuario'];
+    if($usuario == null || $usuario = ''){
+        print "No has iniciado sesión";
+        die();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,14 +16,23 @@
     <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
     <title>Todolist Web App</title>
 </head>
 <body>
-<div class="row">
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light row">
+        <div class="container-fluid">
+            <div class="col-3 ">
+            <img src="img/logo.png" class="img-fluid" alt="">
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="row">pasame
         <div class="container">
             <div class="col-md-12">
                   
-
                 <div class="text-center">    
                     <h1 class="text-success mt-3 mb-3">My todo WebApp</h1>
                     <form action="editar_tarea.php" method="POST">
@@ -31,6 +49,8 @@
                        
                     </form> 
                     <?php require_once 'conn.php';
+                    session_start();
+                    $usuario = $_SESSION['usuario']; 
 
                         use PHPMailer\PHPMailer\PHPMailer;
                         use PHPMailer\PHPMailer\Exception;
@@ -62,8 +82,8 @@
                                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                                     $mail->Port       = 587;
                         
-                                    $mail->setFrom('marcoantoniot089@gmail.com', 'Marco Antonio Ortega Trejo');
-                                    $mail->addAddress('poyoespro@gmail.com');
+                                    $mail->setFrom('marcoantoniot089@gmail.com', 'WebApp');
+                                    $mail->addAddress($usuario);
                                     //$mail->addCC('luis@tygonsoft.com');
                                     $mail->addReplyTo('marcoantoniot089@gmail.com');
                         

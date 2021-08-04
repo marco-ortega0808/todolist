@@ -9,7 +9,8 @@
     $idTareas = $_GET['id_tarea'];
     $info_tarea = $_GET['info_tarea'];
     $estado = $_GET['estado'];
-
+    session_start();
+    $usuario = $_SESSION['usuario']; 
     if($estado="Realizando"){
         $conenctaBD->query("UPDATE tareas SET estado = 'Finalizada' WHERE id_tarea = $idTareas") or die(mysqli_errno($conenctaBD));
         header('location:index.php');
@@ -31,8 +32,8 @@
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
 
-            $mail->setFrom('marcoantoniot089@gmail.com', 'Marco Antonio Ortega Trejo');
-            $mail->addAddress('poyoespro@gmail.com');
+            $mail->setFrom('marcoantoniot089@gmail.com', 'WebApp');
+            $mail->addAddress($usuario);
             //$mail->addCC('luis@tygonsoft.com');
             $mail->addReplyTo('marcoantoniot089@gmail.com');
 
