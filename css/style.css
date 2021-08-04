@@ -4,7 +4,7 @@
 
 .img-fluid {
     height: 90px;
-    padding-left: 30px;
+    padding-left: 20px;
 }
 
 .bg-light {
@@ -13,4 +13,12 @@
 
 .nav-link:hover{
     background-color: #198743 !important;
+}
+
+.row{
+    --bs-gutter-x: 0rem !important;
+}
+
+.col-2{
+    margin-right: 10px;
 }

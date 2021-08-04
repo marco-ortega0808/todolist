@@ -26,7 +26,10 @@
         <div class="collapse navbar-collapse col-6" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active text-center" aria-current="page" href="inicio-sesion.php">Iniciar sesión</a>
+              <a class="nav-link active text-center" aria-current="page" href="inicio-sesion.php">
+                <span class="fas fa-sign-in-alt"></span>
+                Iniciar sesión
+              </a>
             </li>
             <!--<li class="nav-item">
               <a class="nav-link" href="#">Features</a>

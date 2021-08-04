@@ -34,10 +34,19 @@
         <div class="collapse navbar-collapse col-6" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active text-center" aria-current="page" href="datos-usuario.php">Usuario</a>
+                <?php 
+                    $usuario = $_SESSION['usuario'];
+                    require 'conn.php';
+                    $consulta = mysqli_query ($conenctaBD, "SELECT nombre  FROM registro WHERE correo = '$usuario'",);
+                    $row = mysqli_fetch_row($consulta);
+                ?>
+              <a class="nav-link active text-center" aria-current="page" href="datos-usuario.php">
+                  <span class="fas fa-cog"></span>
+                  <?php print $row[0];?>
+                </a>
             </li>
             <li class="nav-item text-center">
-                <a class="nav-link" href="cerrar-sesion.php">Cerrar sesión</a>
+                <a class="nav-link" href="cerrar-sesion.php"><span class="fas fa-sign-out-alt"></span>Cerrar sesión</a>
             </li>
           </ul>
         </div>
