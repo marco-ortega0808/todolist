@@ -5,10 +5,12 @@
     require_once 'conn.php';
     session_start();
     $usuario = $_SESSION['usuario']; 
+    $consulta = mysqli_query ($conenctaBD, "SELECT *  FROM registro WHERE correo = '$usuario'",);
+    $row = mysqli_fetch_row($consulta);
     if (isset($_POST['agregaTarea'])) {
         if ($_POST['tarea'] ) {
             $tarea = $_POST['tarea'];
-            $conenctaBD->query("INSERT INTO tareas (info_tarea, estado) VALUES ('$tarea', 'Nueva')");
+            $conenctaBD->query("INSERT INTO tareas (info_tarea, estado, registro_id_regitro) VALUES ('$tarea', 'Nueva', '$row[0]')");
             header('location:index.php');
 //------------------envio de correo-------
             

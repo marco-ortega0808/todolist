@@ -25,7 +25,10 @@
         <div class="collapse navbar-collapse col-6" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active text-center" aria-current="page" href="registro.php">Registrate</a>
+              <a class="nav-link active text-center" aria-current="page" href="registro.php">
+                <span class="fas fa-user-edit"></span>
+                Registrate
+              </a>
             </li>
             <!--<li class="nav-item">
               <a class="nav-link" href="#">Features</a>
@@ -40,18 +43,26 @@
         <div class="container">
             <div class="col-md-12">
                 
-                <div class="text-center">    
-                    <h1 class="text-success mt-3 mb-3  text-decoration">
-                        My todo WebApp</h1>
+              <div class="text-center">    
+                <h1 class="text-success mt-3 mb-3  text-decoration">
+                    My todo WebApp</h1>
 
-                    <form action="validar-sesion.php" method="POST">
-                        <input type="email" class="form-control" name="email" placeholder="Correo">
-                        <input type="password"  name="contrasena" class="form-control" placeholder="Contraseña">
-                        <button type="submit" class="btn btn-primary mt-3 mb-3" name="iniciar-sesion">Iniciar Sesión</button><br>
-                        <a href="recupera-contrasena.php">¿Olvidaste tu contraseña?</a>
-                      </form>
-                    
-                </div>
+                <form action="validar-sesion.php" method="POST">
+                    <input type="email" class="form-control" name="email" placeholder="Correo">
+                    <input type="password"  name="contrasena" class="form-control" placeholder="Contraseña">
+                    <button type="submit" class="btn btn-primary mt-3 mb-3" name="iniciar-sesion">Iniciar Sesión</button><br>
+                    <a href="recupera-contrasena.php">¿Olvidaste tu contraseña?</a><br>
+                    <p class="mt-2">
+                      <?php
+                        $valida = $_GET['resulta'];
+                        $most = $_GET['resul'];
+                        print $valida;
+                        print $most;
+                      ?>
+                    </p>
+                  </form>
+                
+              </div>
     
             </div>
     

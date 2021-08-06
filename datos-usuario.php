@@ -38,15 +38,15 @@
                 <span class="fas fa-home"></span>Home
                 </a>
             </li>
-            <!--<li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>-->
+            <li class="nav-item text-center">
+                <a class="nav-link" href="cerrar-sesion.php"><span class="fas fa-sign-out-alt"></span>Cerrar sesión</a>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
 <header>
-
+<section>
     <div class="row">
         <div class="container">
             <div class="col-md-12">
@@ -55,41 +55,60 @@
                     <h1 class="text-success mt-3 mb-3 text-decoration">
                         My todo WebApp
                     </h1>
-                    
+                    <h3>
+                        Actuliza tus datos
+                    </h3>
                     <?php
                             $usuario = $_SESSION['usuario'];
                             require 'conn.php';
                             $consulta = mysqli_query ($conenctaBD, "SELECT *  FROM registro WHERE correo = '$usuario'",);
                             $row = mysqli_fetch_row($consulta);
                     ?>
-
-                        <form action="datos-usuario.php" method="POST">
-                            <div>
-                                <span class="fas fa-user"></span>
-                                <input class="mt-1 mb-1" type="text" name="nombre" value="<?php print $row[1]?>">
+                        <div class="container">
+                            <div class="row mt-3 mb-3">
+                                <span class="fas fa-user col"></span>
+                                <label class="col-6 text-start">
+                                    <?php 
+                                        print $row[1];
+                                    ?>
+                                </label>
+                                <a href="editar-nombre.php?nombre=<?php print $row[1];?>" class="col-4 text-start"> Editar Nombre </a>
                             </div>
-                            <div>
-                                <samp class="fas fa-at"></samp>
-                                <input class="mt-2 mb-1" type="email" name="correo" value="<?php print $row[2]?>">
+                            <div class="row mb-3">
+                                <span class="fas fa-at col"></span>
+                                <label class="col-6 text-start">
+                                    <?php 
+                                        print $row[2];
+                                    ?>
+                                </label>
+                                <a href="editar-correo.php?correo=<?php print $row[2];?>" class="col-4 text-start"> Editar Correo </a>
                             </div>
-                            <div>
-                                <span class="fas fa-unlock-alt"></span>
-                                <input class="mt-2" type="password" name="pasword" placeholder="Ingresa nueva contraseña">
+                            <div class="row mb-3">
+                                <span class="fas fa-unlock-alt col"></span>
+                                <label class="col-6 text-start">
+                                    **************
+                                </label>
+                                <a href="editar-password.php" class="col-4 text-start"> Editar Contraseña </a>
                             </div>
-                            <button type="submit" class="btn btn-primary mt-3 mb-3" name="agregaTarea">Editar datos</button>
-                        </form>
+                        </div>    
+                        <p>
+                            <?php
+                                $mostrarEstado = $_GET['respuesta'];
+                                print $mostrarEstado;
+                            ?>
+                        </p>
 
                     <?php
                         $nombre = $_POST['nombre'];
                         $email = $_POST['correo'];
                         $pasword = $_POST['pasword'];
                         $hassh = md5($pasword);
-                        if($nombre && $email && $hassh){
+     
+                        if($nombre || $email || $pasword){
                             $conenctaBD->query("UPDATE registro SET nombre = '$nombre', correo = '$email', contrasena = '$hassh' WHERE id_regitro = $row[0]") or die(mysqli_errno($conenctaBD));
-                            header('location:datos-usuario.php');
-                            print "Cambios realizados con exito";
+                            $estado = "Actualización exitosa";
+                            header('location:datos-usuario.php?respuesta='.$estado);
                         }
-                        
                     ?>
 
                 </div>
@@ -99,6 +118,6 @@
         </div>
     
     </div>
-
+</section>
 </body>
 </html>

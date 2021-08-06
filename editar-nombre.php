@@ -2,7 +2,16 @@
     session_start();
     $usuario = $_SESSION['usuario'];
     if($usuario == null || $usuario = ''){
-        header('location:index.php');
+        print "No has iniciado sesión";
+        die();
+    }
+
+?>
+<?php
+    session_start();
+    $usuario = $_SESSION['usuario'];
+    if($usuario == null || $usuario = ''){
+        print "No has iniciado sesión";
         die();
     }
 ?>
@@ -39,10 +48,15 @@
                     <span class="fas fa-home"></span> Home
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active text-center" aria-current="page" href="datos-usuario.php">
+                    <span class="fas fa-arrow-circle-left"></span>Regresar
+                    </a>
+                </li>
                 <li class="nav-item text-center">
                     <a class="nav-link" href="cerrar-sesion.php"><span class="fas fa-sign-out-alt"></span>Cerrar sesión</a>
                 </li>
-            
+            </div>
         </div>
     </nav>
 </header>
@@ -52,37 +66,35 @@
                   
                 <div class="text-center">    
                     <h1 class="text-success mt-3 mb-3">My todo WebApp</h1>
-                    <form action="editar_tarea.php" method="POST">
+                    <h3>
+                        Actuliza tus datos
+                    </h3>
+                    <form action="editar-nombre.php" method="POST">
                         <?php
-                            require_once 'conn.php';
-                            $idTareas = $_GET['id_tarea'];
-                            $infoTarea = $_GET['info_tarea'];
-                            
+                            $nombre = $_GET['nombre'];
                         ?>
-                        <input type="text" name="tareaEditada" value="<?php print $infoTarea; ?>" class="form-control" >
-                        <input style="display: none;" type="text" name="id" value="<?php print $idTareas; ?>">
-                        <input style="display: none;" type="text" name="tarea" value="<?php print $infoTarea; ?>">
-                        <button type="submit" class="btn btn-primary mt-3" name="ediTarea">Editar tarea</button>
+                        <input type="text" name="ediNombre" value="<?php print $nombre; ?>" class="form-control" >
+                        <button type="submit" class="btn btn-primary mt-3" name="boton">Editar Nombre</button>
                        
                     </form> 
-                    <?php require_once 'conn.php';
-                    session_start();
-                    $usuario = $_SESSION['usuario']; 
-
+                    <?php 
+                        require_once 'conn.php';
+                        session_start();
+                        $usuario = $_SESSION['usuario']; 
                         use PHPMailer\PHPMailer\PHPMailer;
                         use PHPMailer\PHPMailer\Exception;
                         use PHPMailer\PHPMailer\SMTP;
-
-                        if (isset($_POST['ediTarea'])) {
+                        
+                        if (isset($_POST['boton'])) {
                             
-                            if ($_POST['tareaEditada']) {
-                               
-                                $editarTarea = $_POST['tareaEditada'];
-                                $id = $_POST['id'];
-                                $anteriorTarea = $_POST['tarea'];
-                                $conenctaBD->query("UPDATE tareas SET info_tarea = '$editarTarea' WHERE id_tarea = $id") or die(mysqli_errno($conenctaBD));
-                                header('location:index.php');
-
+                            if ($_POST['ediNombre']) {
+                                $ediNombre = $_POST['ediNombre'];
+                                $consulta = mysqli_query ($conenctaBD, "SELECT *  FROM registro WHERE correo = '$usuario'",);
+                                $row = mysqli_fetch_row($consulta);
+                                $conenctaBD->query("UPDATE registro SET nombre = '$ediNombre' WHERE id_regitro = $row[0]") or die(mysqli_errno($conenctaBD));
+                                $estado = "Actualización exitosa";
+                                header('location:datos-usuario.php?respuesta='.$estado);
+                        
                                 require ('PHPMailer/src/Exception.php');
                                 require ('PHPMailer/src/PHPMailer.php');
                                 require ('PHPMailer/src/SMTP.php');
@@ -105,20 +117,20 @@
                                     $mail->addReplyTo('marcoantoniot089@gmail.com');
                         
                                     $mail->isHTML(true);
-                                    $mail->Subject = 'Has editado tu tarea';
-                                    $mail->Body = $id." ".$anteriorTarea." por <br> ".$id." ".$editarTarea;
-                                    $mail->Body = "<table><thead><tr style='border: 1px solid black;'><th>ID</th><th>TAREA</th><th>MENSAJE</th></tr></thead><tr style='border: 1px solid black;'><td> ".$id." </td> ".$anteriorTarea.' </td><td> VIEJO</td></tr><tr><td> '.$id.' </td><td>' .$editarTarea.' </td><td> NUEVO</td></tr></table>';
+                                    $mail->Subject = 'Has actualizado tu nombre';
+                                    $mail->Body = "Actualizaste: ".$row[1]."<br>por<br>Nuevo: ".$ediNombre;
                         
                                     $mail->send();
-                                    print "correo enviado";
-                        
+                                    
                                 }
                                 catch(Exception $e){
                                     print "error {$mail->ErrorInfo}";
                                 }
-
                             }
-                        } 
+                            else {
+                                print "error";
+                            }
+                        }
                     ?> 
                     
                 </div>

@@ -60,7 +60,7 @@
                     <h1 class="text-success mt-3 mb-3">My todo WebApp</h1>
                     <form action="agregar-tarea.php" method="POST">
                         <input type="text" name="tarea" placeholder="Escribe el nombre de tu tarea a realizar" class="form-control" >
-                        <button type="submit" class="btn btn-primary mt-3" name="agregaTarea">AGRGAR TAREA</button>
+                        <button type="submit" class="btn btn-primary mt-3" name="agregaTarea">AGREGAR TAREA</button>
                     </form>
                 </div>
 
@@ -76,37 +76,42 @@
                         
                         <?php
                             require 'conn.php';
+                            $usuario = $_SESSION['usuario'];
+                            $consulta = mysqli_query ($conenctaBD, "SELECT *  FROM registro WHERE correo = '$usuario'",);
+                            $row = mysqli_fetch_row($consulta);
 
-                            $registroTarea = $conenctaBD->query("SELECT * FROM tareas ORDER BY id_tarea ASC");
-
-                            for ($resiveTarea =0; $resiveTarea = $registroTarea->fetch_array(); $resiveTarea++) {
+                            $registroTarea = mysqli_query ($conenctaBD,"SELECT * FROM tareas WHERE registro_id_regitro = $row[0]");
+                            
+                            for ($resiveTarea =0; $resiveTarea = $areglo= mysqli_fetch_row($registroTarea); $resiveTarea++) {
+                                $cont ++;
+                                
                         ?>
-
+                            
                             <tr class="text-center">
-                                <td class="text-center"><?php print $resiveTarea['id_tarea'];?></td>
-                                <td class="text-left "><?php print $resiveTarea['info_tarea'] ?></td>
-                                <td class="text-center <?php $resiveTarea['estado'] == 'Finalizada' ? print 'text-success' :  print 'text-warning'; $resiveTarea['estado'] == 'Nueva' ? print 'text-light' : ''?>">
-                                <?php print $resiveTarea['estado'];?>
+                                <td class="text-center"><?php print $cont;?></td>
+                                <td class="text-left "><?php print $areglo[1]; ?></td>
+                                <td class="text-center <?php $areglo[2] == 'Finalizada' ? print 'text-success' :  print 'text-warning'; $areglo[2] == 'Nueva' ? print 'text-light' : ''?>">
+                                <?php print $areglo[2];?>
                                 </td>
 
                                 <td>
-                                    <?php if($resiveTarea['estado'] == "Nueva" ){?>
-                                        <a href="actualizar-tarea.php?id_tarea=<?php print $resiveTarea['id_tarea'];?>&info_tarea=<?php print $resiveTarea['info_tarea'];?>&estado=<?php print $resiveTarea['estado'];?>" class="btn btn-warning">
+                                    <?php if($areglo[2] == "Nueva" ){?>
+                                        <a href="actualizar-tarea.php?id_tarea=<?php print $areglo[0];?>&info_tarea=<?php print $areglo[1];?>&estado=<?php print $areglo[2];?>" class="btn btn-warning">
                                             <span class="fas fa-stopwatch"></span>
                                         </a>
                                     <?php
                                         }
                                     ?>
 
-                                    <?php if($resiveTarea['estado'] == "En progreso"){ ?>
-                                        <a href="tarea-finalizada.php?id_tarea=<?php print $resiveTarea['id_tarea'];?>&info_tarea=<?php print $resiveTarea['info_tarea'];?>&estado=<?php print $resiveTarea['estado'];?>" class="btn btn-success">
+                                    <?php if($areglo[2] == "En progreso"){ ?>
+                                        <a href="tarea-finalizada.php?id_tarea=<?php print $areglo[0];?>&info_tarea=<?php print $areglo[1];?>&estado=<?php print $areglo[2];?>" class="btn btn-success">
                                             <span class="fas fa-check"></span>
                                         </a>
                                     <?php
                                         }
                                     ?>
 
-                                    <?php if($resiveTarea['estado'] == "Finalizada"){ ?>
+                                    <?php if($areglo[2] == "Finalizada"){ ?>
                                         <a href="" class="btn btn-success">
                                             <span class="fas fa-clipboard-check"></span>
                                         </a>
@@ -114,8 +119,8 @@
                                         }
                                     ?>
 
-                                    <?php if($resiveTarea['estado'] == "Nueva" ||$resiveTarea['estado'] == "En progreso") {?>
-                                        <a href="editar_tarea.php?id_tarea=<?php print $resiveTarea['id_tarea'];?>&info_tarea=<?php print $resiveTarea['info_tarea'];?>" class="btn btn-info">
+                                    <?php if($areglo[2] == "Nueva" ||$areglo[2] == "En progreso") {?>
+                                        <a href="editar_tarea.php?id_tarea=<?php print $areglo[0];?>&info_tarea=<?php print $areglo[1];?>" class="btn btn-info">
                                             <span class="fas fa-pencil-alt"></span>
                                         </a>
                                         <!--<script> 
@@ -130,7 +135,7 @@
                                     }
                                     ?>
 
-                                    <a href="eliminar-tarea.php?id_tarea=<?php print $resiveTarea['id_tarea'];?>&info_tarea=<?php print $resiveTarea['info_tarea'];?>&estado=<?php print $resiveTarea['estado'];?>" class="btn btn-danger">
+                                    <a href="eliminar-tarea.php?id_tarea=<?php $areglo[0];?>&info_tarea=<?php print $areglo[1];?>&estado=<?php print $areglo[2];?>" class="btn btn-danger">
                                         <span class="fa fa-trash-alt"></span>
                                     </a>
                                     

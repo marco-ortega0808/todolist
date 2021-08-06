@@ -12,7 +12,8 @@
             $contrasena = $_POST['contrasena'];
             $hassh = md5($contrasena);
             $conenctaBD->query("INSERT INTO registro (nombre, correo, contrasena) VALUES ('$nombre', '$correo', '$hassh')");
-            header('location:registro.php');
+            $resul = "Registro exitoso";
+            header('location:inicio-sesion.php?resulta='.$resul);
 
             require ('PHPMailer/src/Exception.php');
             require ('PHPMailer/src/PHPMailer.php');
@@ -36,8 +37,8 @@
                 $mail->addReplyTo('marcoantoniot089@gmail.com');
             
                 $mail->isHTML(true);
-                $mail->Subject = 'Bienvenido ¡Gracias por registrarte!';
-                $mail->Body = '<h1>Te damos la bienvenida '.$nombre.'</h1><br> <p><b>Datosingresado</b> <br><b>Correo</b>: '.$correo.' <br> <b>Contraseña</b>: '.$contrasena.' </p>';
+                $mail->Subject = 'Gracias por registrarte';
+                $mail->Body = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"></head> <html><h1>Te damos la bienvenida '.$nombre.'</h1><br> <p><b>Datos ingresado:</b> <br><b>Correo</b>: '.$correo.' <br> <b>Contraseña</b>: '.$contrasena.' </p> <br><a href="http://practica-php.test/todolist/inicio-sesion.php">Inicia tu sesión</a></html>';
             
                 $mail->send();
                 
