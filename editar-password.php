@@ -2,16 +2,7 @@
     session_start();
     $usuario = $_SESSION['usuario'];
     if($usuario == null || $usuario = ''){
-        print "No has iniciado sesión";
-        die();
-    }
-
-?>
-<?php
-    session_start();
-    $usuario = $_SESSION['usuario'];
-    if($usuario == null || $usuario = ''){
-        print "No has iniciado sesión";
+        header('location:inicia.sesion.php');
         die();
     }
 ?>
@@ -72,7 +63,7 @@
                     </h3>
                     <form action="editar-password.php" method="POST">
                         <input type="password" name="ediPasword" placeholder="**************" class="form-control" >
-                        <button type="submit" class="btn btn-primary mt-3" name="boton">Editar Contraseña</button>
+                        <button type="submit" class="btn btn-primary mt-3" name="boton">Actualizar Contraseña</button>
                        
                     </form> 
                     <?php 

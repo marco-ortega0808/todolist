@@ -2,16 +2,7 @@
     session_start();
     $usuario = $_SESSION['usuario'];
     if($usuario == null || $usuario = ''){
-        print "No has iniciado sesión";
-        die();
-    }
-
-?>
-<?php
-    session_start();
-    $usuario = $_SESSION['usuario'];
-    if($usuario == null || $usuario = ''){
-        print "No has iniciado sesión";
+        header('location:inicia.sesion.php');
         die();
     }
 ?>
@@ -74,7 +65,7 @@
                             $nombre = $_GET['nombre'];
                         ?>
                         <input type="text" name="ediNombre" value="<?php print $nombre; ?>" class="form-control" >
-                        <button type="submit" class="btn btn-primary mt-3" name="boton">Editar Nombre</button>
+                        <button type="submit" class="btn btn-primary mt-3" name="boton">Actualizar Nombre</button>
                        
                     </form> 
                     <?php 

@@ -2,7 +2,7 @@
     session_start();
     $usuario = $_SESSION['usuario'];
     if($usuario == null || $usuario = ''){
-        print "No has iniciado sesión";
+        header('location:inicia.sesion.php');
         die();
     }
 ?>
@@ -72,7 +72,8 @@
                                         print $row[1];
                                     ?>
                                 </label>
-                                <a href="editar-nombre.php?nombre=<?php print $row[1];?>" class="col-4 text-start"> Editar Nombre </a>
+                                <span class="far fa-edit col"></span>
+                                <a href="editar-nombre.php?nombre=<?php print $row[1];?>" class="col-2 text-start"> Editar </a>
                             </div>
                             <div class="row mb-3">
                                 <span class="fas fa-at col"></span>
@@ -81,14 +82,16 @@
                                         print $row[2];
                                     ?>
                                 </label>
-                                <a href="editar-correo.php?correo=<?php print $row[2];?>" class="col-4 text-start"> Editar Correo </a>
+                                <span class="far fa-edit col"></span>
+                                <a href="editar-correo.php?correo=<?php print $row[2];?>" class="col-2 text-start"> Editar </a>
                             </div>
                             <div class="row mb-3">
                                 <span class="fas fa-unlock-alt col"></span>
                                 <label class="col-6 text-start">
                                     **************
                                 </label>
-                                <a href="editar-password.php" class="col-4 text-start"> Editar Contraseña </a>
+                                <span class="far fa-edit col"></span>
+                                <a href="editar-password.php" class="col-2 text-start"> Editar </a>
                             </div>
                         </div>    
                         <p>
@@ -97,19 +100,6 @@
                                 print $mostrarEstado;
                             ?>
                         </p>
-
-                    <?php
-                        $nombre = $_POST['nombre'];
-                        $email = $_POST['correo'];
-                        $pasword = $_POST['pasword'];
-                        $hassh = md5($pasword);
-     
-                        if($nombre || $email || $pasword){
-                            $conenctaBD->query("UPDATE registro SET nombre = '$nombre', correo = '$email', contrasena = '$hassh' WHERE id_regitro = $row[0]") or die(mysqli_errno($conenctaBD));
-                            $estado = "Actualización exitosa";
-                            header('location:datos-usuario.php?respuesta='.$estado);
-                        }
-                    ?>
 
                 </div>
     

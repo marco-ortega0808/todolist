@@ -2,7 +2,7 @@
     session_start();
     $usuario = $_SESSION['usuario'];
     if($usuario == null || $usuario = ''){
-        header('location:index.php');
+        header('location:inicia.sesion.php');
         die();
     }
 ?>
@@ -42,7 +42,7 @@
                 <li class="nav-item text-center">
                     <a class="nav-link" href="cerrar-sesion.php"><span class="fas fa-sign-out-alt"></span>Cerrar sesión</a>
                 </li>
-            
+            </div>
         </div>
     </nav>
 </header>
@@ -62,7 +62,7 @@
                         <input type="text" name="tareaEditada" value="<?php print $infoTarea; ?>" class="form-control" >
                         <input style="display: none;" type="text" name="id" value="<?php print $idTareas; ?>">
                         <input style="display: none;" type="text" name="tarea" value="<?php print $infoTarea; ?>">
-                        <button type="submit" class="btn btn-primary mt-3" name="ediTarea">Editar tarea</button>
+                        <button type="submit" class="btn btn-primary mt-3" name="ediTarea">Actualizar tarea</button>
                        
                     </form> 
                     <?php require_once 'conn.php';

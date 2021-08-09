@@ -2,7 +2,7 @@
     session_start();
     $usuario = $_SESSION['usuario'];
     if($usuario == null || $usuario = ''){
-        print "No has iniciado sesión";
+        header('location:inicia.sesion.php');
         die();
     }
 ?>
@@ -47,6 +47,9 @@
             </li>
             <li class="nav-item text-center">
                 <a class="nav-link" href="cerrar-sesion.php"><span class="fas fa-sign-out-alt"></span>Cerrar sesión</a>
+            </li>
+            <li class="nav-item text-center">
+                <a class="nav-link" href="lista-usuarios.php"><span class="fas fa-user"></span>Usuarios</a>
             </li>
           </ul>
         </div>
@@ -135,7 +138,7 @@
                                     }
                                     ?>
 
-                                    <a href="eliminar-tarea.php?id_tarea=<?php $areglo[0];?>&info_tarea=<?php print $areglo[1];?>&estado=<?php print $areglo[2];?>" class="btn btn-danger">
+                                    <a href="eliminar-tarea.php?id_tarea=<?php print $areglo[0];?>&info_tarea=<?php print $areglo[1];?>&estado=<?php print $areglo[2];?>" class="btn btn-danger">
                                         <span class="fa fa-trash-alt"></span>
                                     </a>
                                     
