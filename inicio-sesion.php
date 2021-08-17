@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse col-6" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active text-center" aria-current="page" href="registro.php">
+              <a class="nav-link active text-center" aria-current="page" href="registro-usuario.php">
                 <span class="fas fa-user-edit"></span>
                 Registrate
               </a>

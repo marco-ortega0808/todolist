@@ -31,9 +31,6 @@
                 Iniciar sesión
               </a>
             </li>
-            <!--<li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>-->
           </ul>
         </div>
       </div>
@@ -49,22 +46,17 @@
                         My todo WebApp
                     </h1>
 
-                    <form action="agrega-registro.php" method="POST">
+                    <form action="agrega-usuario.php" method="POST">
                         <input type="text" name="nombre" class="form-control" placeholder="Nombre">
                         <input type="text" name="correo" class="form-control" placeholder="Correo">
                         <input type="password"  name="contrasena" class="form-control encript" placeholder="Contraseña">
-                        <select name="nameRol" class="form-control">
-                          <option value="" selected="selected"> - Selecione rol - </option>
-                          <option value="admin">Admin</option>
-                          <option value="profesor">Profesor</option>
-                          <option value="alumno">Alumno</option>
-                        </select>
+                        <input type="text" name="rol" style="display: none;" value="usuario">
                         <button type="submit" class="btn btn-primary mt-3" name="agregaRegistro">Agrgar registro</button>
                     </form>
                     <?php
-                    $res = $_GET['respuesta'];
-                    print $res;
-                    ?>
+                     $res =  $_GET['respuesta'];
+                     print $res;
+                     ?>
                 </div>
     
             </div>

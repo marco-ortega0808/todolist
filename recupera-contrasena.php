@@ -17,7 +17,21 @@
       <div class="container-fluid">
         <div class="col-3 ">
           <img src="img/logo.png" class="img-fluid" alt="">
-        </div>        
+        </div>
+        <div class="col-2">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse col-6" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active text-center" aria-current="page" href="inicio-sesion.php">
+                <span class="fas fa-arrow-circle-left"></span>
+                Regresar
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>

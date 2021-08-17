@@ -10,7 +10,7 @@
             $nombre = $_POST['nombre'];
             $correo = $_POST['correo'];
             $contrasena = $_POST['contrasena'];
-            $rol = $_POST['nameRol'];
+            $rol = $_POST['rol'];
             $hassh = md5($contrasena);
             $conenctaBD->query("INSERT INTO registro (nombre, correo, contrasena, rol) VALUES ('$nombre', '$correo', '$hassh','$rol')");
             $resul = "Registro exitoso";
@@ -47,15 +47,14 @@
             catch(Exception $e){
                 print "error {$mail->ErrorInfo}";
             }
+           
 
-        }
-        else {
-            $res = "Campos incompletos";
-            header('location:registro.php?respuesta='.$res);
-        }
+        } else {
+                $res = "Campos incompletos";
+                header('location:registro-usuario.php?respuesta='.$res);
+            }
     }
     else {
-        $res = "Campos incompletos";
-        header('location:registro.php?respuesta='.$res);
+        print("Error");
     }
 ?>

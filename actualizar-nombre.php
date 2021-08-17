@@ -40,7 +40,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active text-center" aria-current="page" href="datos-usuario.php">
+                <?php $id = $_GET['id'];
+                            $name = $_GET['name'];
+                            $correo = $_GET['correo']?>
+                <a class="nav-link active text-center" aria-current="page" href="editar-registro.php?id=<?php print $id;?>&name=<?php print $name;?>&correo=<?php print $correo;?>">
                     <span class="fas fa-arrow-circle-left"></span>Regresar
                     </a>
                 </li>
@@ -58,33 +61,37 @@
                 <div class="text-center">    
                     <h1 class="text-success mt-3 mb-3">My todo WebApp</h1>
                     <h3>
-                        Actuliza tus datos
+                        Actulizar datos
                     </h3>
-                    <form action="editar-nombre.php" method="POST">
+                    <form action="actualizar-nombre.php" method="POST">
                         <?php
-                            $nombre = $_GET['nombre'];
+                            $id = $_GET['id'];
+                            $name = $_GET['name'];
+                            $correo = $_GET['correo']
                         ?>
-                        <input type="text" name="ediNombre" value="<?php print $nombre; ?>" class="form-control" >
-                        <button type="submit" class="btn btn-primary mt-3" name="boton">Actualizar Nombre</button>
+                        <input type="text" name="nombre" value="<?php print $name; ?>" class="col-6 mb-3 mt-2" >
+                            <input type="text" style="display: none;" name="idr" value="<?php print $id?>">
+                            <input type="email" name="email" style="display: none;" value="<?php print $correo;?>">
+                            <button type="submit" class="btn btn-primary " name="botonName">Actualizar</button>
                        
                     </form> 
                     <?php 
                         require_once 'conn.php';
-                        session_start();
-                        $usuario = $_SESSION['usuario']; 
                         use PHPMailer\PHPMailer\PHPMailer;
                         use PHPMailer\PHPMailer\Exception;
                         use PHPMailer\PHPMailer\SMTP;
                         
-                        if (isset($_POST['boton'])) {
+                        if (isset($_POST['botonName'])) {
                             
-                            if ($_POST['ediNombre']) {
-                                $ediNombre = $_POST['ediNombre'];
-                                $consulta = mysqli_query ($conenctaBD, "SELECT *  FROM registro WHERE correo = '$usuario'",);
-                                $row = mysqli_fetch_row($consulta);
-                                $conenctaBD->query("UPDATE registro SET nombre = '$ediNombre' WHERE id_regitro = $row[0]") or die(mysqli_errno($conenctaBD));
-                                $estado = "Actualización exitosa";
-                                header('location:datos-usuario.php?respuesta='.$estado);
+                            if ($_POST['nombre']) {
+                                require 'conn.php';
+                                $name = $_GET['name'];
+                                $nombre = $_POST['nombre'];
+                                $idr = $_POST['idr'];
+                                $core = $_POST['email'];
+                                $conenctaBD->query("UPDATE registro SET nombre = '$nombre' WHERE id_regitro = $idr") or die(mysqli_errno($conenctaBD));
+                                $respueta = "Nombre actualizado";
+                                header('location:editar-registro.php?res='.$respueta.'&name='.$nombre.'&correo='.$core);
                         
                                 require ('PHPMailer/src/Exception.php');
                                 require ('PHPMailer/src/PHPMailer.php');
@@ -103,13 +110,13 @@
                                     $mail->Port       = 587;
                         
                                     $mail->setFrom('marcoantoniot089@gmail.com', 'WebApp');
-                                    $mail->addAddress($usuario);
+                                    $mail->addAddress($core);
                                     //$mail->addCC('luis@tygonsoft.com');
                                     $mail->addReplyTo('marcoantoniot089@gmail.com');
                         
                                     $mail->isHTML(true);
                                     $mail->Subject = 'Has actualizado tu nombre';
-                                    $mail->Body = "Actualizaste: ".$row[1]."<br>por<br>Nuevo: ".$ediNombre;
+                                    $mail->Body = "Por<br>Nuevo: ".$nombre;
                         
                                     $mail->send();
                                     
