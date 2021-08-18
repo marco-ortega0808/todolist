@@ -50,8 +50,8 @@
                         <input type="text" name="nombre" class="form-control" placeholder="Nombre">
                         <input type="text" name="correo" class="form-control" placeholder="Correo">
                         <input type="password"  name="contrasena" class="form-control encript" placeholder="Contraseña">
-                        <input type="text" name="rol" style="display: none;" value="usuario">
-                        <button type="submit" class="btn btn-primary mt-3" name="agregaRegistro">Agrgar registro</button>
+                        <input type="text" name="rol" style="display: none;" value="alumno">
+                        <button type="submit" class="btn btn-primary mt-3" name="agregaRegistro">Registrate</button>
                     </form>
                     <?php
                      $res =  $_GET['respuesta'];

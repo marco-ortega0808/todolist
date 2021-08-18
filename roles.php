@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    $usuario = $_SESSION['usuario'];
+    if($usuario == null || $usuario = ''){
+        header('location:inicia.sesion.php');
+        die();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +50,7 @@
         </div>
     </nav>
 </header>
-
+<section>
     <div class="row">
         <div class="container">
             <div class="col-md-12">
@@ -52,29 +60,41 @@
                         My todo WebApp
                     </h1>
 
-                    <form action="agrega-registro.php" method="POST">
-                        <input type="text" name="nombre" class="form-control" placeholder="Nombre">
-                        <input type="text" name="correo" class="form-control" placeholder="Correo">
-                        <input type="password"  name="contrasena" class="form-control encript" placeholder="Contraseña">
-                        <select name="nameRol" class="form-control">
-                          <option value="" selected="selected"> - Selecione rol - </option>
-                          <option value="admin">Admin</option>
-                          <option value="profesor">Profesor</option>
-                          <option value="alumno">Alumno</option>
-                        </select>
-                        <button type="submit" class="btn btn-primary mt-3" name="agregaRegistro">Registrar</button>
+                    </div>
+                    <form action="agregar-tarea.php" method="POST">
+                        <input type="text" name="tarea" placeholder="Escribe el nombre de tu tarea a realizar" class="form-control" >
+                        <button type="submit" class="btn btn-primary mt-3 " name="agregaTarea">AGREGAR TAREA</button>
                     </form>
-                    <?php
-                    $res = $_GET['respuesta'];
-                    print $res;
-                    ?>
-                </div>
-    
-            </div>
-    
-        </div>
-    
-    </div>
+                    <table class="table mt-3">
+                        <thead>
+                            <tr class="text-center">
+                                <th>ID</th>
+                                <th>ROL</th>
+                                <th>ACCIONES</th>
+                            </tr>
+                        </thead>
+                        
+                        <?php
 
-</body>
-</html>
+                            require 'conn.php';
+                            
+                                $registroTarea = $conenctaBD->mysqli ("SELECT * FROM roles");
+                            print var_dump ($registroTarea);
+                            for ($resiveTarea =0; $resiveTarea = $areglo= mysqli_fetch_row($registroTarea); $resiveTarea++) 
+                                $cont ++;
+                             
+                        ?>  
+                            
+                            <tr class="text-center">
+                            <td class="text-center"><?php print $areglo[0];?></td>
+                            <td class="text-left "><?php print $areglo[1]; ?></td>
+                            <td class="text-center <?php $areglo[2] == 'Finalizada' ? print 'text-success' :  print 'text-warning'; $areglo[2] == 'Nueva' ? print 'text-light' : ''?>">
+                            <?php print $areglo[2];?>
+                            </td>
+
+                            <td>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -3,8 +3,6 @@
     
     $id = $_POST['id'];
     $rol = $_POST['roles'];
-print $id."".$rol."".$rol1."".$rol2;
-
 
     if (isset($_POST['submit'])) {
         if ($_POST['roles'] == "admin") {

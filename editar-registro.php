@@ -61,7 +61,8 @@
                     <?php
                             $id = $_GET['id'];
                             $name = $_GET['name'];
-                            $correo = $_GET['correo']
+                            $correo = $_GET['correo'];
+                            $rol = $_GET['rol'];
                         ?>
                         
                             <div class="row mt-3 mb-3">
@@ -92,13 +93,14 @@
                                     <?php 
                                         print $correo;
                                     ?>
-                                </label><?php
-                            require 'conn.php';
-                            $usuario = $_SESSION['usuario'];
-                            $consulta = mysqli_query ($conenctaBD, "SELECT *  FROM registro WHERE correo = '$usuario'",);
-                            $row = mysqli_fetch_row($consulta);
-                            if($row[4] == 'admin' ){
-                            ?>
+                                </label>
+                                <?php
+                                    require 'conn.php';
+                                    $usuario = $_SESSION['usuario'];
+                                    $consulta = mysqli_query ($conenctaBD, "SELECT *  FROM registro WHERE correo = '$usuario'",);
+                                    $row = mysqli_fetch_row($consulta);
+                                    if($row[4] == 'admin' ){
+                                ?>
                                 <span class="far fa-edit col"></span>
                                 <a href="actualizar-correo.php?id=<?php print $id;?>&name=<?php print $name;?>&correo=<?php print $correo;?>" class="col-2 text-start"> Editar </a>
                             <?php
@@ -113,8 +115,114 @@
                                 <span class="far fa-edit col"></span>
                                 <a href="actualizar-password.php?id=<?php print $id;?>&name=<?php print $name;?>&correo=<?php print $correo;?>" class="col-2 text-start"> Editar </a>
                             </div>
-                        </div>    
-                       
+                        </div>   
+                        <div style="margin-left: 15%;">
+                            <h6>Actualiza tu rol</h6>
+                        </div> 
+                        <div style="margin-left: 73%;">
+                        
+                        <?php
+                        
+                        if($row[4] == "admin" ){
+                        
+                        ?>
+                        
+                            <div class=" mb-3">
+                                    <form action="actualizar-rol.php" method="POST">
+                                    <?php 
+                                                if($rol == "admin" ){
+                                            ?>
+                                                <div class="form-check col">
+                                                    <input type="text" name="id" value="<?php print $areglo[0];?>" style="display: none;">
+                                                    <input class="form-check-input" type="radio" name="roles" id="xampleRadios2" value="admin" checked>
+                                                    <label class="form-check-label" for="exampleRadios2">
+                                                        Admin
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    
+                                                    <input class="form-check-input" type="radio" name="roles" id="xampleRadios2" value="profesor" >
+                                                    <label class="form-check-label" for="exampleRadios2">
+                                                        Profesor
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="roles" id="xampleRadios3" value="alumno">
+                                                    <label class="form-check-label" for="exampleRadios3">
+                                                        alumno
+                                                    </label>
+                                                </div>
+                                                    <input type="submit" name="submit" value="Actualizar">
+                                            <?php
+                                                }
+                                            ?>
+                                        </form>
+                                        <form action="actualizar-rol.php" method="POST">
+                                            <?php 
+                                                if($rol == "profesor" ){
+                                            ?>
+                                            <div class="col">
+                                                    <input type="text" name="id" value="<?php print $areglo[0];?>" style="display: none;">
+                                                    <input class="form-check-input col-3" type="radio" name="roles" id="xampleRadios2" value="admin" >
+                                                    <label class="form-check-label col-3" for="exampleRadios2">
+                                                        Admin
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    
+                                                    <input class="form-check-input" type="radio" name="roles" id="xampleRadios2" value="profesor" checked>
+                                                    <label class="form-check-label" for="exampleRadios2">
+                                                        Profesor
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="roles" id="xampleRadios3" value="alumno">
+                                                    <label class="form-check-label" for="exampleRadios3">
+                                                        alumno
+                                                    </label>
+                                                </div>
+                                                    <input type="submit" name="submit" value="Actualizar">
+                                            <?php
+                                                }
+                                            ?>
+                                        </form>
+                                        <form action="actualizar-rol.php" method="POST">
+                                            <?php 
+                                                if($rol == "alumno"){
+                                            ?>
+                                            <div class="form-check">
+                                                    
+                                                    <input class="form-check-input" type="radio" name="roles" id="xampleRadios2" value="admin" >
+                                                    <label class="form-check-label" for="exampleRadios2">
+                                                        Admin
+                                                    </label>
+                                                </div>
+                                            
+                                                <div class="form-check">
+                                                    <input type="text" name="id" value="<?php print $areglo[0];?>" style="display: none;">
+                                                    <input class="form-check-input" type="radio" name="roles" id="ampleRadios2" value="profesor" >
+                                                    <label class="form-check-label" for="exampleRadios2">
+                                                        Profesor
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="roles" id="ampleRadios3" value="alumno" checked>
+                                                    <label class="form-check-label" for="exampleRadios3">
+                                                        alumno
+                                                    </label>
+                                                </div>
+                                                    <input type="submit" name="submit" value="Actualizar">
+                                            <?php
+                                                }
+                                            ?>
+                                        </form> 
+                                </div>            
+                            </td>
+                        </tr>
+
+                            <?php }
+                            ?>
+                       </div>
                     <?php 
                     $res = $_GET['res'];
                     print $res;?>
