@@ -61,9 +61,10 @@
                     </h1>
 
                     </div>
-                    <form action="agregar-tarea.php" method="POST">
-                        <input type="text" name="tarea" placeholder="Escribe el nombre de tu tarea a realizar" class="form-control" >
-                        <button type="submit" class="btn btn-primary mt-3 " name="agregaTarea">AGREGAR TAREA</button>
+                    <form action="roles.php" method="POST">
+                        <input type="text" name="rol" placeholder="Escribe el nombre de tu tarea a realizar" class="form-control" >
+                        <div style="padding-left: 40%;">
+                        <button type="submit" class="btn btn-primary mt-3 " name="agregaTarea">AGREGAR ROL</button></div>
                     </form>
                     <table class="table mt-3">
                         <thead>
@@ -77,24 +78,29 @@
                         <?php
 
                             require 'conn.php';
-                            
-                                $registroTarea = $conenctaBD->mysqli ("SELECT * FROM roles");
-                            print var_dump ($registroTarea);
-                            for ($resiveTarea =0; $resiveTarea = $areglo= mysqli_fetch_row($registroTarea); $resiveTarea++) 
-                                $cont ++;
-                             
+                            $registroTarea = mysqli_query ($conenctaBD,"SELECT * FROM roles ");
+                            for ($resiveTarea =0; $resiveTarea = $areglo= mysqli_fetch_row($registroTarea); $resiveTarea++) {
+
                         ?>  
                             
                             <tr class="text-center">
                             <td class="text-center"><?php print $areglo[0];?></td>
                             <td class="text-left "><?php print $areglo[1]; ?></td>
-                            <td class="text-center <?php $areglo[2] == 'Finalizada' ? print 'text-success' :  print 'text-warning'; $areglo[2] == 'Nueva' ? print 'text-light' : ''?>">
-                            <?php print $areglo[2];?>
+                            <td class="text-center">
+                                <a href="eliminar-rol.php?id=<?php print $areglo[0];?>" class="btn btn-danger">
+                                    <span class="fa fa-trash-alt"></span>
+                                </a>
                             </td>
 
                             <td>
-                </div>
+                </div><?php }?>
             </div>
+            <?php
+                if($_POST['rol']){
+                    $nameRol = $_POST['rol'];
+                    $conenctaBD->query("INSERT INTO roles (name_rol) VALUES ('$nameRol')");
+                    header('location:roles.php');
+                }?>
         </div>
     </div>
 </section>

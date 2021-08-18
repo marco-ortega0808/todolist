@@ -63,8 +63,9 @@
                     $usuario = $_SESSION['usuario'];
                     $consulta = mysqli_query ($conenctaBD, "SELECT *  FROM registro WHERE correo = '$usuario'",);
                     $row = mysqli_fetch_row($consulta);
-                    if($row[4] == "admin"){?>
+                    if($row[4] == 1){?>
                     <a href="registro.php"><button class="btn btn-primary" >Agregar registro</button></a>
+                    <a href="roles.php"><button class="btn btn-primary" >Agregar rol</button></a>
                     <?php
                 }?>
                 </div>
@@ -76,6 +77,9 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Correo</th>
+                                <?php if($row[4] == 1){?>
+                                <th>Rol</th>
+                                <?php }?>
                                 <th>ACCIONES</th>
                             </tr>
                         </thead>
@@ -86,11 +90,11 @@
                             $consulta = mysqli_query ($conenctaBD, "SELECT *  FROM registro WHERE correo = '$usuario'",);
                             $row = mysqli_fetch_row($consulta);
                             
-                            $registroTarea = mysqli_query ($conenctaBD,"SELECT * FROM registro where rol = 'profesor' OR  rol = 'alumno' or rol = 'usuario' ");
-                            if($row[4] == "profesor" ){
+                            $registroTarea = mysqli_query ($conenctaBD,"SELECT * FROM registro where rol = 3   ");
+                            if($row[4] == 2 ){
+
                             for ($resiveTarea =0; $resiveTarea = $areglo= mysqli_fetch_row($registroTarea); $resiveTarea++){
-                                
-                        ?>
+                            ?>
 
                                 <?php
                                     
@@ -114,37 +118,47 @@
                                 <?php }
                                 }?>
 
-<?php
+                                <?php
 
-require 'conn.php';
-$usuario = $_SESSION['usuario'];
-$consulta = mysqli_query ($conenctaBD, "SELECT *  FROM registro WHERE correo = '$usuario'",);
-$row = mysqli_fetch_row($consulta);
+                                require 'conn.php';
+                                $usuario = $_SESSION['usuario'];
+                                $consulta = mysqli_query ($conenctaBD, "SELECT *  FROM registro WHERE correo = '$usuario'",);
+                                $row = mysqli_fetch_row($consulta);
 
-$registroTarea = mysqli_query ($conenctaBD,"SELECT * FROM registro ");
-if($row[4] == "admin" ){
-for ($resiveTarea =0; $resiveTarea = $areglo= mysqli_fetch_row($registroTarea); $resiveTarea++){
-    
-?>
+                                $registroTarea = mysqli_query ($conenctaBD,"SELECT * FROM registro ");
+                                if($row[4] == 1 ){
+                                for ($resiveTarea =0; $resiveTarea = $areglo= mysqli_fetch_row($registroTarea); $resiveTarea++){
+                                    
+                                ?>
 
 
-    <tr class="text-center">
-    <td class="text-center"><?php print $areglo[0];?></td>
-    <td class="text-left "><?php print $areglo[1]; ?></td>
-    <td class="text-center"><?php print $areglo[2];?></td>
-    <td>
-        <a href="editar-registro.php?id=<?php print $areglo[0];?>&name=<?php print $areglo[1];?>&correo=<?php print $areglo[2]?>&rol=<?php print $areglo[4]; ?>" class="btn btn-info">
-                <span class="fas fa-pencil-alt"></span>
-        </a>
-        <a href="eliminar-registro.php?id=<?php print $areglo[0];?>&name=<?php print $areglo[1];?>&correo=<?php print $areglo[2]?>" class="btn btn-danger">
-            <span class="fa fa-trash-alt"></span>
-        </a>
-        
-    </td>
-</tr>
+                                    <tr class="text-center">
+                                    <td class="text-center"><?php print $areglo[0];?></td>
+                                    <td class="text-left "><?php print $areglo[1]; ?></td>
+                                    <td class="text-center"><?php print $areglo[2];?></td>
+                                    <?php if($row[4] == 1){?>
+                                    <td>
+                                        
+                                        <?php
+                                        $consulP = mysqli_query ($conenctaBD, "SELECT *  FROM roles WHERE id = $areglo[4]",);
+                                        $respuesta = mysqli_fetch_row($consulP);
+                                        
+                                        print $respuesta[1];
+                                        ?>
+                                    </td><?php }?>
+                                    <td>
+                                        <a href="editar-registro.php?id=<?php print $areglo[0];?>&name=<?php print $areglo[1];?>&correo=<?php print $areglo[2]?>&rol=<?php print $areglo[4]; ?>" class="btn btn-info">
+                                                <span class="fas fa-pencil-alt"></span>
+                                        </a>
+                                        <a href="eliminar-registro.php?id=<?php print $areglo[0];?>&name=<?php print $areglo[1];?>&correo=<?php print $areglo[2]?>" class="btn btn-danger">
+                                            <span class="fa fa-trash-alt"></span>
+                                        </a>
+                                        
+                                    </td>
+                                </tr>
 
-    <?php }
-    }?>
+                                    <?php }
+                                    }?>
                     </table>
                 </div>
             </div>

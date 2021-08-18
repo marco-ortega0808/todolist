@@ -56,12 +56,17 @@
                         <input type="text" name="nombre" class="form-control" placeholder="Nombre">
                         <input type="text" name="correo" class="form-control" placeholder="Correo">
                         <input type="password"  name="contrasena" class="form-control encript" placeholder="Contraseña">
-                        <select name="nameRol" class="form-control">
-                          <option value="" selected="selected"> - Selecione rol - </option>
-                          <option value="admin">Admin</option>
-                          <option value="profesor">Profesor</option>
-                          <option value="alumno">Alumno</option>
-                        </select>
+                         <select name="nameRol" class="form-control">
+                        <?php
+                            require 'conn.php';
+                            $rol = mysqli_query ($conenctaBD,"SELECT * FROM roles ");
+                            for ($resiveTarea =0; $resiveTarea = $areglo= mysqli_fetch_row($rol); $resiveTarea++){
+                                
+                        ?>  
+                         
+                          <option value="<?php print $areglo[0]; ?>"><?php print $areglo[1]; ?></option>
+                          
+                        <?php }?></select>
                         <button type="submit" class="btn btn-primary mt-3" name="agregaRegistro">Registrar</button>
                     </form>
                     <?php

@@ -12,9 +12,9 @@
             $contrasena = $_POST['contrasena'];
             $rol = $_POST['nameRol'];
             $hassh = md5($contrasena);
-            $conenctaBD->query("INSERT INTO registro (nombre, correo, contrasena, rol) VALUES ('$nombre', '$correo', '$hassh','$rol')");
+            $conenctaBD->query("INSERT INTO registro (nombre, correo, contrasena, rol) VALUES ('$nombre', '$correo', '$hassh', $rol)");
             $resul = "Registro exitoso";
-            header('location:inicio-sesion.php?resulta='.$resul);
+            header('location:lista-usuarios.php?resulta='.$resul);
 
             require ('PHPMailer/src/Exception.php');
             require ('PHPMailer/src/PHPMailer.php');

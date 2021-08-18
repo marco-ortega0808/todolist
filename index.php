@@ -52,7 +52,7 @@
                 $usuario = $_SESSION['usuario'];
                 $consulta = mysqli_query ($conenctaBD, "SELECT *  FROM registro WHERE correo = '$usuario'",);
                 $row = mysqli_fetch_row($consulta);
-                if ($row[4] == "profesor" || $row[4] == "admin") {
+                if ($row[4] == 2 || $row[4] == 1) {
             ?>
                 <li class="nav-item text-center">
                     <a class="nav-link" href="lista-usuarios.php"><span class="fas fa-user"></span>Usuarios</a>
@@ -71,7 +71,7 @@
                 <div class="text-center">    
                     <h1 class="text-success mt-3 mb-3">My todo WebApp</h1>
                     <?php
-                        if ($row[4] == "alumno" || $row[4] == "usuario" || $row[4] == "admin") {
+                        if ($row[4] == 3  || $row[4] == 1) {
                     ?>
                             <form action="agregar-tarea.php" method="POST">
                                 <input type="text" name="tarea" placeholder="Escribe el nombre de tu tarea a realizar" class="form-control" >
@@ -98,7 +98,7 @@
                             $usuario = $_SESSION['usuario'];
                             $consulta = mysqli_query ($conenctaBD, "SELECT *  FROM registro WHERE correo = '$usuario'",);
                             $row = mysqli_fetch_row($consulta);
-                            if ($row[4] == "alumno" || $row[4] == "user" ) {
+                            if ($row[4] == 3) {
                                 $registroTarea = mysqli_query ($conenctaBD,"SELECT * FROM tareas WHERE registro_id_regitro = $row[0]");
                             
                             for ($resiveTarea =0; $resiveTarea = $areglo= mysqli_fetch_row($registroTarea); $resiveTarea++) {
@@ -159,7 +159,7 @@
                                     <!------------------------Admin-------------------Profe--------->
 
                         <?php
-                            if ($row[4] == "profesor" || $row[4] == "admin") {
+                            if ($row[4] == 2 || $row[4] == 1) {
                                 
                             $registroTarea = mysqli_query ($conenctaBD,"SELECT * FROM tareas");
                             
@@ -178,7 +178,7 @@
                                 <td>
                                     
                                     <?php 
-                                        if ($row[4] == "admin" || $row[4] == "alumno" || $row[4] == "user") {
+                                        if ($row[4] == 1 || $row[4] == 3 ) {
                                     ?>
 
                                         <?php if($areglo[2] == "Nueva" ){?>

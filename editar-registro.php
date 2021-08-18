@@ -78,7 +78,7 @@
                             $usuario = $_SESSION['usuario'];
                             $consulta = mysqli_query ($conenctaBD, "SELECT *  FROM registro WHERE correo = '$usuario'",);
                             $row = mysqli_fetch_row($consulta);
-                            if($row[4] == 'admin' ){
+                            if($row[4] == 1 ){
                             ?>
                                 <span class="far fa-edit col"></span>
                                 
@@ -99,7 +99,7 @@
                                     $usuario = $_SESSION['usuario'];
                                     $consulta = mysqli_query ($conenctaBD, "SELECT *  FROM registro WHERE correo = '$usuario'",);
                                     $row = mysqli_fetch_row($consulta);
-                                    if($row[4] == 'admin' ){
+                                    if($row[4] == 1 ){
                                 ?>
                                 <span class="far fa-edit col"></span>
                                 <a href="actualizar-correo.php?id=<?php print $id;?>&name=<?php print $name;?>&correo=<?php print $correo;?>" class="col-2 text-start"> Editar </a>
@@ -116,21 +116,21 @@
                                 <a href="actualizar-password.php?id=<?php print $id;?>&name=<?php print $name;?>&correo=<?php print $correo;?>" class="col-2 text-start"> Editar </a>
                             </div>
                         </div>   
-                        <div style="margin-left: 15%;">
-                            <h6>Actualiza tu rol</h6>
-                        </div> 
-                        <div style="margin-left: 73%;">
+                        
+                        <div style="margin-left: 70%;">
                         
                         <?php
                         
-                        if($row[4] == "admin" ){
+                        if($row[4] == 1 ){
                         
                         ?>
-                        
+                        <div style="margin-left: 15%;">
+                            <h5>Actualiza  rol</h5>
+                        </div> 
                             <div class=" mb-3">
                                     <form action="actualizar-rol.php" method="POST">
                                     <?php 
-                                                if($rol == "admin" ){
+                                                if($rol == 1 ){
                                             ?>
                                                 <div class="form-check col">
                                                     <input type="text" name="id" value="<?php print $areglo[0];?>" style="display: none;">
@@ -159,7 +159,7 @@
                                         </form>
                                         <form action="actualizar-rol.php" method="POST">
                                             <?php 
-                                                if($rol == "profesor" ){
+                                                if($rol == 2 ){
                                             ?>
                                             <div class="col">
                                                     <input type="text" name="id" value="<?php print $areglo[0];?>" style="display: none;">
@@ -188,7 +188,7 @@
                                         </form>
                                         <form action="actualizar-rol.php" method="POST">
                                             <?php 
-                                                if($rol == "alumno"){
+                                                if($rol == 3){
                                             ?>
                                             <div class="form-check">
                                                     
