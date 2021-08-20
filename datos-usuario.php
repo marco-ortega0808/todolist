@@ -94,6 +94,7 @@
                                 <a href="editar-password.php" class="col-2 text-start"> Editar </a>
                             </div>
                         </div>    
+                        <a href="index.php">Regresar</a>
                         <p>
                             <?php
                                 $mostrarEstado = $_GET['respuesta'];

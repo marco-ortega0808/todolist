@@ -45,21 +45,42 @@
                   <?php print $row[0];?>
                 </a>
             </li>
-            <li class="nav-item text-center">
-                <a class="nav-link" href="cerrar-sesion.php"><span class="fas fa-sign-out-alt"></span>Cerrar sesión</a>
-            </li>
             <?php 
                 $usuario = $_SESSION['usuario'];
                 $consulta = mysqli_query ($conenctaBD, "SELECT *  FROM registro WHERE correo = '$usuario'",);
                 $row = mysqli_fetch_row($consulta);
-                if ($row[4] == 2 || $row[4] == 1) {
+                if ($row[4] == 1) {
+            ?>
+               
+                <li class="nav-item dropdown text-center">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="fas fa-user btn-menu"></span>Usuarios
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item text-center" href="lista-usuarios.php"><span class="fas fa-clipboard-list"></span>lista</a></a></li>
+            <li><a class="dropdown-item text-center" href="roles.php"><span class="fas fa-user-tag"></span>Roles</a></a></li>
+            <li><a class="dropdown-item text-center" href="registro.php"><span class="fas fa-user-edit"></span>Agregar usuario</a></li>
+            
+          </ul>
+        </li>
+            <?php
+                }
+            ?>
+             <?php 
+                $usuario = $_SESSION['usuario'];
+                $consulta = mysqli_query ($conenctaBD, "SELECT *  FROM registro WHERE correo = '$usuario'",);
+                $row = mysqli_fetch_row($consulta);
+                if ($row[4] == 2) {
             ?>
                 <li class="nav-item text-center">
-                    <a class="nav-link" href="lista-usuarios.php"><span class="fas fa-user"></span>Usuarios</a>
+                    <a class="nav-link" href="lista-usuarios.php"><span class="fas fa-user"></span>Alumnos</a>
                 </li>
             <?php
                 }
             ?>
+            <li class="nav-item text-center">
+                <a class="nav-link" href="cerrar-sesion.php"><span class="fas fa-sign-out-alt"></span>Cerrar sesión</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -70,25 +91,38 @@
             <div class="col-md-12">
                 <div class="text-center">    
                     <h1 class="text-success mt-3 mb-3">My todo WebApp</h1>
+                    <H3>Tareas</H3>
                     <?php
                         if ($row[4] == 3  || $row[4] == 1) {
                     ?>
+                        <div class="contebox">
                             <form action="agregar-tarea.php" method="POST">
                                 <input type="text" name="tarea" placeholder="Escribe el nombre de tu tarea a realizar" class="form-control" >
                                 <button type="submit" class="btn btn-primary mt-3" name="agregaTarea">AGREGAR TAREA</button>
                             </form>
+                        </div>
                     <?php
                         }
                     ?>        
                 </div>
-
-                    <table class="table mt-3">
+                <div class="contebox">
+                    <div>
+                    <table class="table mt-3 table table-striped">
                         <thead>
                             <tr class="text-center">
                                 <th>ID</th>
                                 <th>TAREA</th>
                                 <th>STATUS</th>
+                                <?php
+                                if ($row[4] == 2  || $row[4] == 1) {
+                                ?>
+                                <th>ASIGNADO</th>
+                                <?php }?>
+                                <?php
+                                if ($row[4] == 3  || $row[4] == 1) {
+                                ?>
                                 <th>ACCIONES</th>
+                                <?php }?>
                             </tr>
                         </thead>
                         
@@ -165,6 +199,8 @@
                             
                             for ($resiveTarea =0; $resiveTarea = $areglo= mysqli_fetch_row($registroTarea); $resiveTarea++) {
                                 $cont ++;
+                            $consul = mysqli_query ($conenctaBD,"SELECT * FROM registro WHERE id_regitro = $areglo[3]");
+                            $respuesta = mysqli_fetch_row($consul);
                             
                         ?>
                             
@@ -174,12 +210,16 @@
                                 <td class="text-center <?php $areglo[2] == 'Finalizada' ? print 'text-success' :  print 'text-warning'; $areglo[2] == 'Nueva' ? print 'text-light' : ''?>">
                                 <?php print $areglo[2];?>
                                 </td>
-
                                 <td>
-                                    
-                                    <?php 
+                                <?php print $respuesta[1];?>
+                                </td>
+                                <?php 
                                         if ($row[4] == 1 || $row[4] == 3 ) {
                                     ?>
+                                    
+                                <td class="ancho-td">
+                                
+                                    
 
                                         <?php if($areglo[2] == "Nueva" ){?>
                                             <a href="actualizar-tarea.php?id_tarea=<?php print $areglo[0];?>&info_tarea=<?php print $areglo[1];?>&estado=<?php print $areglo[2];?>" class="btn btn-warning">
@@ -217,12 +257,11 @@
                                         <a href="eliminar-tarea.php?id_tarea=<?php print $areglo[0];?>&info_tarea=<?php print $areglo[1];?>&estado=<?php print $areglo[2];?>" class="btn btn-danger">
                                             <span class="fa fa-trash-alt"></span>
                                         </a>
-
+                                </td>
                                     <?php
                                     }
                                     ?>
-                                </td>
-
+                                
                             </tr>
                         
                             

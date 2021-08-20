@@ -38,10 +38,16 @@
                     <span class="fas fa-home"></span> Home
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active text-center" aria-current="page" href="lista-usuarios.php">
-                    <span class="fas fa-arrow-circle-left"></span>Regresar
+                <li class="nav-item dropdown text-center">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="fas fa-user btn-menu"></span>Usuarios
                     </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item text-center" href="lista-usuarios.php"><span class="fas fa-clipboard-list"></span>lista</a></a></li>
+                      
+                    <li><a class="dropdown-item text-center" href="registro.php"><span class="fas fa-user-edit"></span>Agregar usuario</a></li>
+                        
+                    </ul>
                 </li>
                 <li class="nav-item text-center">
                     <a class="nav-link" href="cerrar-sesion.php"><span class="fas fa-sign-out-alt"></span>Cerrar sesión</a>
@@ -59,14 +65,20 @@
                     <h1 class="text-success mt-3 mb-3 text-decoration">
                         My todo WebApp
                     </h1>
-
-                    </div>
+                    <h3>Roles</h3>
+                    <div class="contebox">
                     <form action="roles.php" method="POST">
-                        <input type="text" name="rol" placeholder="Escribe el nombre de tu tarea a realizar" class="form-control" >
-                        <div style="padding-left: 40%;">
-                        <button type="submit" class="btn btn-primary mt-3 " name="agregaTarea">AGREGAR ROL</button></div>
-                    </form>
-                    <table class="table mt-3">
+                        <input type="text" name="rol" placeholder="Escribe un nuevo rol" class="form-control" >
+                        <div>
+                        <button type="submit" class="btn btn-primary mt-3 " name="agregarRol">Guardar</button></div>  
+                    </div>
+                <?php
+                 $estado = $_GET['respuesta'];
+                 print $estado;
+                 ?></div>
+                 </form>
+                 <div class="contebox">
+                    <table class="table table-responsive mt-3 table table-striped ">
                         <thead>
                             <tr class="text-center">
                                 <th>ID</th>
@@ -87,20 +99,26 @@
                             <td class="text-center"><?php print $areglo[0];?></td>
                             <td class="text-left "><?php print $areglo[1]; ?></td>
                             <td class="text-center">
-                                <a href="eliminar-rol.php?id=<?php print $areglo[0];?>" class="btn btn-danger">
-                                    <span class="fa fa-trash-alt"></span>
+                                
+                                <a href="editar-rol.php?id=<?php print $areglo[0];?>&name=<?php print $areglo[1];?>" class="btn btn-info">
+                                            <span class="fas fa-pencil-alt"></span>
                                 </a>
-                            </td>
-
-                            <td>
+                                <a href="eliminar-rol.php?id=<?php print $areglo[0];?>" class="btn btn-danger btn-top">
+                                        <span class="fa fa-trash-alt"></span>
+                                    </a>
                 </div><?php }?>
-            </div>
+            </div></div>
             <?php
+            if (isset($_POST['agregarRol'])) {
                 if($_POST['rol']){
                     $nameRol = $_POST['rol'];
                     $conenctaBD->query("INSERT INTO roles (name_rol) VALUES ('$nameRol')");
                     header('location:roles.php');
-                }?>
+                }
+            }
+            ?>
         </div>
     </div>
 </section>
+</body>
+</html>

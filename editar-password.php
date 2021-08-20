@@ -55,17 +55,18 @@
 <div class="row">
         <div class="container">
             <div class="col-md-12">
-                  
                 <div class="text-center">    
                     <h1 class="text-success mt-3 mb-3">My todo WebApp</h1>
-                    <h3>
-                        Actuliza tus datos
+                    <h3 class=" mb-3">
+                        Actuliza tu contraseña
                     </h3>
-                    <form action="editar-password.php" method="POST">
+                    <div class="contebox">
+                    <form action="editar-password.php" class="mt-3 mb-3" method="POST">
                         <input type="password" name="ediPasword" placeholder="**************" class="form-control" >
-                        <button type="submit" class="btn btn-primary mt-3" name="boton">Actualizar Contraseña</button>
-                       
+                        <button type="submit" class="btn btn-primary mt-3" name="boton">ACTUALIZAR</button>
                     </form> 
+                    </div>
+                    <a href="datos-usuario.php">Cancelar</a>
                     <?php 
                         require_once 'conn.php';
                         session_start();

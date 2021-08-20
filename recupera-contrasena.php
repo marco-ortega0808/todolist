@@ -45,12 +45,12 @@
                     <h1 class="text-success mt-3 mb-3 text-decoration">
                         My todo WebApp
                     </h1>
-
+                    <div class="contebox">
                     <form action="valida-correo.php" method="POST">
                         <input type="text" name="correo" class="form-control" placeholder="Correo">
                         <button type="submit" class="btn btn-primary mt-3" name="agregaRegistro">Obtener contraseña nueva</button>
                     </form>
-                    
+                    </div>
                 </div>
     
             </div>

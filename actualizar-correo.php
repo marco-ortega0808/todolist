@@ -63,6 +63,7 @@
                     <h3>
                         Actulizar datos
                     </h3>
+                        <div class="contebox">
                     <form action="actualizar-correo.php" method="POST">
                         <?php
                             $id = $_GET['id'];
@@ -73,7 +74,8 @@
                             <input type="text" style="display: none;" name="idr" value="<?php print $id?>">
                             <input type="email" name="email" class="col-6 mb-3 mt-2"  value="<?php print $correo;?>">
                             <button type="submit" class="btn btn-primary " name="actCorreo">Actualizar</button>
-                    </form> 
+
+                    </form> </div>
                        
                     <?php 
                         require_once 'conn.php';

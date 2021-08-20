@@ -46,8 +46,9 @@
               <div class="text-center">    
                 <h1 class="text-success mt-3 mb-3  text-decoration">
                     My todo WebApp</h1>
-
-                <form action="validar-sesion.php" method="POST">
+                <h4 class="mb-3">Ingresa tus datos</h4>
+                <div class="contebox">
+                  <form action="validar-sesion.php" method="POST">
                     <input type="email" class="form-control" name="email" placeholder="Correo">
                     <input type="password"  name="contrasena" class="form-control" placeholder="Contraseña">
                     <button type="submit" class="btn btn-primary mt-3 mb-3" name="iniciar-sesion">Iniciar Sesión</button><br>
@@ -61,7 +62,7 @@
                       ?>
                     </p>
                   </form>
-                
+                </div>
               </div>
     
             </div>

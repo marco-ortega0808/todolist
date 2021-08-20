@@ -62,7 +62,7 @@
                     <h1 class="text-success mt-3 mb-3">My todo WebApp</h1>
                     <h3>
                         Actulizar datos
-                    </h3>
+                    </h3><div class="contebox">
                     <form action="actualizar-nombre.php" method="POST">
                         <?php
                             $id = $_GET['id'];
@@ -74,7 +74,7 @@
                             <input type="email" name="email" style="display: none;" value="<?php print $correo;?>">
                             <button type="submit" class="btn btn-primary " name="botonName">Actualizar</button>
                        
-                    </form> 
+                    </form> </div>
                     <?php 
                         require_once 'conn.php';
                         use PHPMailer\PHPMailer\PHPMailer;

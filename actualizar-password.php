@@ -63,6 +63,7 @@
                     <h3>
                         Actulizar datos
                     </h3>
+                    <div class="contebox">
                     <form action="actualizar-password.php" method="POST">
                         <?php
                             $id = $_GET['id'];
@@ -75,7 +76,7 @@
                             <input type="password" name="pasword" class="col-6 mt-2"  placeholder="*************">
                             <button type="submit" class="btn btn-primary " name="actPasword">Actualizar</button>
                     </form> 
-                    </form> 
+                    </div> 
                        
                     <?php 
                         require_once 'conn.php';

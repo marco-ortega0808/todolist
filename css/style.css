@@ -22,3 +22,47 @@
 .col-2{
     margin-right: 10px;
 }
+.contebox{
+    margin: 0px 5% !important;
+}
+
+.btn-danger{
+    margin-top: 5px;
+    font-size: .8em;
+}
+
+.btn-warning{
+    font-size: .8em;
+}
+
+.btn-info{
+    font-size: .8em;
+}
+
+.ancho-td{
+    /*width: 20px;*/
+}
+
+.btn-top{
+    margin: 0 !important;
+}
+
+.width-td{
+    /*width: 30px;*/
+}
+
+.navbar-nav .dropdown-menu {
+    background: #218556;
+}
+
+.dropdown-menu{
+    border: none;
+}
+
+.dropdown-item:hover{
+    background-color: #0f883e !important;
+}
+
+.dropdown-item{
+    color: rgba(0,0,0,.7);
+}

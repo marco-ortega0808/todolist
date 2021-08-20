@@ -45,14 +45,16 @@
                     <h1 class="text-success mt-3 mb-3 text-decoration">
                         My todo WebApp
                     </h1>
-
-                    <form action="agrega-usuario.php" method="POST">
-                        <input type="text" name="nombre" class="form-control" placeholder="Nombre">
-                        <input type="text" name="correo" class="form-control" placeholder="Correo">
-                        <input type="password"  name="contrasena" class="form-control encript" placeholder="Contraseña">
-                        <input type="text" name="rol" style="display: none;" value="alumno">
-                        <button type="submit" class="btn btn-primary mt-3" name="agregaRegistro">Registrate</button>
-                    </form>
+                    <h4 class="mb-3">Registrarte</h4>
+                    <div class="contebox">
+                      <form action="agrega-usuario.php" method="POST">
+                          <input type="text" name="nombre" class="form-control" placeholder="Nombre">
+                          <input type="text" name="correo" class="form-control" placeholder="Correo">
+                          <input type="password"  name="contrasena" class="form-control encript" placeholder="Contraseña">
+                          <input type="text" name="rol" style="display: none;" value="alumno">
+                          <button type="submit" class="btn btn-primary mt-3" name="agregaRegistro">Registrate</button>
+                      </form>
+                    </div>
                     <?php
                      $res =  $_GET['respuesta'];
                      print $res;

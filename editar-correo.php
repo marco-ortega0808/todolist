@@ -57,18 +57,19 @@
                   
                 <div class="text-center">    
                     <h1 class="text-success mt-3 mb-3">My todo WebApp</h1>
-                    
                     <h3>
-                        Actuliza tus datos
+                        Actuliza tu correo
                     </h3>
-                    <form action="editar-correo.php" method="POST">
+                    <div class="contebox">
+                    <form action="editar-correo.php" class="mt-3 mb-3" method="POST">
                         <?php
                             $correo = $_GET['correo'];
                         ?>
                         <input type="text" name="ediCorreo" value="<?php print $correo; ?>" class="form-control" >
-                        <button type="submit" class="btn btn-primary mt-3" name="boton">Actualizar Correo</button>
-                       
+                        <button type="submit" class="btn btn-primary mt-3" name="boton">ACTUALIZAR</button>
                     </form> 
+                    </div>
+                    <a href="datos-usuario.php">Cancelar</a>
                     <?php 
                         require_once 'conn.php';
                         session_start();

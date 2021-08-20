@@ -1,15 +1,24 @@
+<?php
+    session_start();
+    $usuario = $_SESSION['usuario'];
+    if($usuario == null || $usuario = ''){
+        header('location:inicia.sesion.php');
+        die();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todolist Web App</title>
     <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
+    <title>Todolist Web App</title>
 </head>
 <body>
 <header>
@@ -30,18 +39,10 @@
                     <span class="fas fa-home"></span> Home
                     </a>
                 </li>
-                
-                
-               
-                <li class="nav-item dropdown text-center">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="fas fa-user btn-menu"></span>Usuarios
+                <li class="nav-item">
+                    <a class="nav-link active text-center" aria-current="page" href="roles.php">
+                    <span class="fas fa-arrow-circle-left"></span>Regresar
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item text-center" href="lista-usuarios.php"><span class="fas fa-clipboard-list"></span>lista</a></a></li>
-                    <li><a class="dropdown-item text-center" href="roles.php"><span class="fas fa-user-tag"></span>Roles</a></a></li>
-                    
-                    </ul>
                 </li>
                 <li class="nav-item text-center">
                     <a class="nav-link" href="cerrar-sesion.php"><span class="fas fa-sign-out-alt"></span>Cerrar sesión</a>
@@ -50,47 +51,50 @@
         </div>
     </nav>
 </header>
-
+<section></section>
     <div class="row">
         <div class="container">
             <div class="col-md-12">
-                
+                  
                 <div class="text-center">    
-                    <h1 class="text-success mt-3 mb-3 text-decoration">
-                        My todo WebApp
-                    </h1>
-                    <h3 class="mt-3 mb-3">Registro de usuario</h3>
+                    <h1 class="text-success mt-3 mb-3">My todo WebApp</h1>
+                    <h3>Editar rol</h3>
                     <div class="contebox">
-                        <form action="agrega-registro.php" class="mb-3" method="POST">
-                            <input type="text" name="nombre" class="form-control" placeholder="Nombre">
-                            <input type="text" name="correo" class="form-control" placeholder="Correo">
-                            <input type="password"  name="contrasena" class="form-control encript" placeholder="Contraseña">
-                            <select name="nameRol" class="form-control">
-                            <?php
-                                require 'conn.php';
-                                $rol = mysqli_query ($conenctaBD,"SELECT * FROM roles ");
-                                for ($resiveTarea =0; $resiveTarea = $areglo= mysqli_fetch_row($rol); $resiveTarea++){
-                                    
-                            ?>  
-                            
-                            <option value="<?php print $areglo[0]; ?>"><?php print $areglo[1]; ?></option>
-                            
-                            <?php }?></select>
-                            <button type="submit" class="btn btn-primary mt-4" name="agregaRegistro">Registrar</button>
-                        </form>
-                    </div>
-                    <a href="lista-usuarios.php">Cancelar</a>
                     <?php
-                    $res = $_GET['respuesta'];
-                    print $res;
+                            require_once 'conn.php';
+                            $id = $_GET['id'];
+                            $nameRol = $_GET['name'];
+                            
+                        ?>
+                        <form class="mb-3" action="editar-rol.php" method="POST">
+                        <input type="text" name="rol" value="<?php print $nameRol; ?>" class="form-control" >
+                        <input style="display: none;" type="text" name="id" value="<?php print $id; ?>">
+                        <button type="submit" class="btn btn-primary mt-3" name="boton">Actualizar</button>
+                       
+                    </form> 
+                    </div>
+                    <a href="roles.php">Cancelar</a>
+                    <?php 
+                    $res = $_GET['res'];
+                    print $res;?>
+                    <?php
+                    if (isset($_POST['boton'])) {
+                                                
+                        if ($_POST['rol']) {
+                            $idr = $_POST['id'];
+                            $rol = $_POST['rol'];
+                            
+                            $conenctaBD->query("UPDATE roles SET name_rol = '$rol' WHERE id = $idr") or die(mysqli_errno($conenctaBD));
+                            $estado = "Actualización exitosa";
+                            header('location:roles.php?respuesta='.$estado);
+                        }
+                    }
                     ?>
                 </div>
-    
             </div>
-    
-        </div>
-    
-    </div>
 
+        </div>
+    </div>
+</section>
 </body>
 </html>

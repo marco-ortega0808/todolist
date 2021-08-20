@@ -52,7 +52,9 @@
                   
                 <div class="text-center">    
                     <h1 class="text-success mt-3 mb-3">My todo WebApp</h1>
-                    <form action="editar_tarea.php" method="POST">
+                    <h3 >Editar tarea</h3>
+                    <div class="contebox">
+                    <form class="mb-3" action="editar_tarea.php" method="POST">
                         <?php
                             require_once 'conn.php';
                             $idTareas = $_GET['id_tarea'];
@@ -63,8 +65,8 @@
                         <input style="display: none;" type="text" name="id" value="<?php print $idTareas; ?>">
                         <input style="display: none;" type="text" name="tarea" value="<?php print $infoTarea; ?>">
                         <button type="submit" class="btn btn-primary mt-3" name="ediTarea">Actualizar tarea</button>
-                       
-                    </form> 
+                    </form> </div>
+                    <a href="index.php">Cancelar</a>
                     <?php require_once 'conn.php';
                     session_start();
                     $usuario = $_SESSION['usuario']; 
