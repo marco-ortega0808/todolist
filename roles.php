@@ -1,11 +1,7 @@
 <?php
-    session_start();
-    $usuario = $_SESSION['usuario'];
-    if($usuario == null || $usuario = ''){
-        header('location:inicia.sesion.php');
-        die();
-    }
+    require 'sin-inicio-sesion.php'
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

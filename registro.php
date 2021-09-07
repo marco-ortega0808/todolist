@@ -1,3 +1,6 @@
+<?php
+    require 'sin-inicio-sesion.php'
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

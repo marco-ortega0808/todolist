@@ -52,7 +52,7 @@
 }
 
 .navbar-nav .dropdown-menu {
-    background: #218556;
+    background: #177c4d;
 }
 
 .dropdown-menu{
@@ -65,4 +65,8 @@
 
 .dropdown-item{
     color: rgba(0,0,0,.7);
+}
+
+.nav-link dropdown-toggle{
+    transition: all 0.5s;
 }

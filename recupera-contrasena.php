@@ -40,8 +40,7 @@
     <div class="row">
         <div class="container">
             <div class="col-md-12">
-                
-                <div class="text-center">    
+                <div class="text-center">
                     <h1 class="text-success mt-3 mb-3 text-decoration">
                         My todo WebApp
                     </h1>

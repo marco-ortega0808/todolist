@@ -1,11 +1,7 @@
 <?php
-    session_start();
-    $usuario = $_SESSION['usuario'];
-    if($usuario == null || $usuario = ''){
-        header('location:inicia.sesion.php');
-        die();
-    }
+    require 'sin-inicio-sesion.php'
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,7 +68,7 @@
                                         print $row[1];
                                     ?>
                                 </label>
-                                <span class="far fa-edit col"></span>
+                                <a href="editar-nombre.php?nombre=<?php print $row[1];?>" class="text-end col"><span class="far fa-edit "></span></a>
                                 <a href="editar-nombre.php?nombre=<?php print $row[1];?>" class="col-2 text-start"> Editar </a>
                             </div>
                             <div class="row mb-3">
@@ -82,7 +78,7 @@
                                         print $row[2];
                                     ?>
                                 </label>
-                                <span class="far fa-edit col"></span>
+                                <a href="editar-correo.php?correo=<?php print $row[2];?>" class="text-end col"><span class="far fa-edit "></span></a>
                                 <a href="editar-correo.php?correo=<?php print $row[2];?>" class="col-2 text-start"> Editar </a>
                             </div>
                             <div class="row mb-3">
@@ -90,7 +86,7 @@
                                 <label class="col-6 text-start">
                                     **************
                                 </label>
-                                <span class="far fa-edit col"></span>
+                                <a href="editar-password.php" class="text-end col"><span class="far fa-edit "></span></a>
                                 <a href="editar-password.php" class="col-2 text-start"> Editar </a>
                             </div>
                         </div>    
