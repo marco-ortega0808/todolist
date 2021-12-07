@@ -26,19 +26,6 @@
     margin: 0px 5% !important;
 }
 
-.btn-danger{
-    margin-top: 5px;
-    font-size: .8em;
-}
-
-.btn-warning{
-    font-size: .8em;
-}
-
-.btn-info{
-    font-size: .8em;
-}
-
 .ancho-td{
     /*width: 20px;*/
 }
@@ -70,3 +57,9 @@
 .nav-link dropdown-toggle{
     transition: all 0.5s;
 }
+
+@media (max-width: 575.98px) { 
+    .btn-danger, .btn-success, .btn-warning, .btn-info{
+        margin-top: 5px;
+    }
+ }

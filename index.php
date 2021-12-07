@@ -106,17 +106,17 @@
                         <thead>
                             <tr class="text-center">
                                 <th>ID</th>
-                                <th>TAREA</th>
-                                <th>STATUS</th>
+                                <th class="text-break">TAREA</th>
+                                <th class="text-break">STATUS</th>
                                 <?php
                                 if ($row[4] == 2  || $row[4] == 1) {
                                 ?>
-                                <th>ASIGNADO</th>
+                                <th class="text-break">ASIGNADO</th>
                                 <?php }?>
                                 <?php
                                 if ($row[4] == 3  || $row[4] == 1) {
                                 ?>
-                                <th>ACCIONES</th>
+                                <th class="text-break">ACCIONES</th>
                                 <?php }?>
                             </tr>
                         </thead>
